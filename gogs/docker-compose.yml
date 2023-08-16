@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  gogs:
+    image: 'gogs/gogs:latest'
+    restart: on-failure
+    volumes:
+      - 'gogs:/data/gogs'
+    container_name: 'gogs'
+    networks:
+      - cicd
+volumes:
+  gogs: null
+
+networks:
+  cicd:
+    external: true

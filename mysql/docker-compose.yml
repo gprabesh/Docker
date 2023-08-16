@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mysql-server:
+    image: 'mysql:8.0.19'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - 'mysql:/var/lib/mysql'
+    networks:
+      - cicd
+    container_name: 'mysql'
+volumes:
+  mysql: null
+
+networks:
+  cicd:
+    external: true

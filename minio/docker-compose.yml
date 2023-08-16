@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    image: 'quay.io/minio/minio:latest'
+    restart: unless-stopped
+    environment:
+      - MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - 'minio:/data'
+    container_name: 'minio'
+    networks:
+      - cicd
+    user: "${UID}:${GID}"
+volumes:
+  minio: null
+networks:
+  cicd:
+    external: true
