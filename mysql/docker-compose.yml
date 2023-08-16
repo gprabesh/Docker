@@ -1,9 +1,12 @@
 version: '3.8'
 services:
   mysql-server:
+    restart: always
     image: 'mysql:8.0.19'
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - '3306:3306'
     volumes:
       - 'mysql:/var/lib/mysql'
     networks:
