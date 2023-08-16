@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  portainer:
+    image: 'portainer/portainer-ce:latest'
+    restart: on-failure
+    volumes:
+      - 'portainer:/data'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    container_name: 'portainer'
+    networks:
+      - cicd
+volumes:
+  portainer: null
+
+networks:
+  cicd:
+    external: true
