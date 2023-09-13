@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  web:
+    image: 'hoppscotch/hoppscotch:latest'
+    restart: unless-stopped
+    container_name: 'hoppscotch'
+    ports:
+      - '3000:3000'
+      - '3100:3100'
+      - '3170:3170'
+    networks:
+      - cicd
+networks:
+  cicd:
+    external: true
