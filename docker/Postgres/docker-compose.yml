@@ -10,14 +10,6 @@ services:
       - cicd
     volumes:
       - 'pgsql:/var/lib/postgresql/data/'
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    networks:
-      - cicd
 volumes:
   pgsql: null
 
