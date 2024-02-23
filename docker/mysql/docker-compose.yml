@@ -5,6 +5,7 @@ services:
     image: 'mysql:8.0.19'
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
     ports:
       - '3306:3306'
     volumes:
