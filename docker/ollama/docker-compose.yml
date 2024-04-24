@@ -10,8 +10,13 @@ services:
     container_name: 'ollama'
     networks:
       - common
-    devices:
-      - "/dev/nvidia0:/dev/nvidia0"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 networks:
   common:
     external: true
