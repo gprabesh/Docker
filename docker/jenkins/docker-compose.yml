@@ -3,18 +3,16 @@ services:
   jenkins:
     image: jenkins/jenkins:lts
     volumes:
-      - jenkins:/var/jenkins_home
+      - ./volumes/jenkins:/var/jenkins_home
     container_name: 'jenkins'
     networks:
-      - cicd
+      - common
   jenkins-ssh-agent:
     image: jenkins/ssh-agent
     restart: on-failure
     container_name: 'jenkins-ssh-agent'
     networks:
-      - cicd
-volumes:
-  jenkins: null
+      - common
 networks:
-  cicd:
+  common:
     external: true

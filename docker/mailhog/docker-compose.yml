@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  mailhog:
+    restart: unless-stopped
+    image: 'corpusops/mailhog:latest'
+    networks:
+      - common
+    container_name: 'mailhog'
+networks:
+  common:
+    external: true

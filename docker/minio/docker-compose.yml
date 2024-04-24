@@ -8,12 +8,10 @@ services:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     volumes:
-      - 'minio:/data'
+      - './volumes/minio:/data'
     container_name: 'minio'
     networks:
-      - cicd
-volumes:
-  minio: null
+      - common
 networks:
-  cicd:
+  common:
     external: true

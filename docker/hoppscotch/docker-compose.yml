@@ -1,15 +1,17 @@
 version: '3.8'
 services:
-  web:
-    image: 'hoppscotch/hoppscotch:latest'
+  hoppscotch:
+    image: 'hoppscotch/hoppscotch:2023.12.6'
     restart: unless-stopped
     container_name: 'hoppscotch'
     ports:
-      - '3000:3000'
-      - '3100:3100'
-      - '3170:3170'
+      - '172.17.0.1:3000:3000'
+      - '172.17.0.1:3100:3100'
+      - '172.17.0.1:3170:3170'
     networks:
-      - cicd
+      - common
+    env_file:
+      - .env
 networks:
-  cicd:
+  common:
     external: true

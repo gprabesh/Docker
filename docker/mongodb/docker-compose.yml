@@ -4,12 +4,9 @@ services:
     image: 'mongo:latest'
     container_name: mongodb
     volumes:
-      - 'mongodb:/data/db'
+      - './volumes/mongodb:/data/db'
     networks:
-      - cicd
-volumes:
-  mongo: null
-
+      - common
 networks:
-  cicd:
+  common:
     external: true

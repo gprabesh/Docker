@@ -7,17 +7,13 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlab.localhost'
     volumes:
-      - 'gitlab-config:/etc/gitlab'
-      - 'gitlab-logs:/var/log/gitlab'
-      - 'gitlab-data:/var/opt/gitlab'
+      - './volumes/gitlab-config:/etc/gitlab'
+      - './volumes/gitlab-logs:/var/log/gitlab'
+      - './volumes/gitlab-data:/var/opt/gitlab'
     shm_size: '256m'
     container_name: 'gitlab'
     networks:
-      - cicd
-volumes:
-  gitlab-config: null
-  gitlab-logs: null
-  gitlab-data: null
+      - common
 networks:
-  cicd:
+  common:
     external: true

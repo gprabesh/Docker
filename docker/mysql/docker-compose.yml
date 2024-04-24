@@ -9,13 +9,10 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - 'mysql:/var/lib/mysql'
+      - './volumes/mysql:/var/lib/mysql'
     networks:
-      - cicd
+      - common
     container_name: 'mysql'
-volumes:
-  mysql: null
-
 networks:
-  cicd:
+  common:
     external: true

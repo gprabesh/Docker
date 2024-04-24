@@ -4,13 +4,10 @@ services:
     image: 'gogs/gogs:latest'
     restart: on-failure
     volumes:
-      - 'gogs:/data/gogs'
+      - './volumes/gogs:/data/gogs'
     container_name: 'gogs'
     networks:
-      - cicd
-volumes:
-  gogs: null
-
+      - common
 networks:
-  cicd:
+  common:
     external: true

@@ -8,15 +8,11 @@ services:
       - '172.17.0.1:81:81'
       - '172.17.0.1:443:443'
     volumes:
-      - 'nginx-proxy-manager-data:/data'
-      - 'nginx-proxy-manager-letsencrypt:/etc/letsencrypt'
+      - './volumes/nginx-proxy-manager-data:/data'
+      - './volumes/nginx-proxy-manager-letsencrypt:/etc/letsencrypt'
     container_name: 'nginx-proxy-manager'
     networks:
-      - cicd
-volumes:
-  nginx-proxy-manager-data: null
-  nginx-proxy-manager-letsencrypt: null
-
+      - common
 networks:
-  cicd:
+  common:
     external: true

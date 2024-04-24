@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  gitea-server:
+    image: 'gitea/gitea'
+    restart: on-failure
+    volumes:
+      - ./volumes/data:/var/lib/gitea
+      - ./volumes/config:/etc/gitea
+      - ./volumes/etc/timezone:/etc/timezone:ro
+      - ./volumes/etc/localtime:/etc/localtime:ro
+    container_name: 'gitea'
+    networks:
+      - common
+networks:
+  common:
+    external: true

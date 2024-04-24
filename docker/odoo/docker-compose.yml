@@ -5,15 +5,15 @@ services:
     depends_on:
       - db
     volumes:
-      - odoo-web-data:/var/lib/odoo
-      - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
+      - ./volumes/odoo-web-data:/var/lib/odoo
+      - ./volumes/config:/etc/odoo
+      - ./volumes/addons:/mnt/extra-addons
     environment:
       - PASSWORD_FILE=/run/secrets/postgresql_password
     secrets:
       - postgresql_password
     networks:
-      - cicd
+      - common
   db:
     image: postgres:15
     environment:
@@ -26,12 +26,10 @@ services:
     secrets:
       - postgresql_password
     networks:
-      - cicd
+      - common
 secrets:
   postgresql_password:
     file: odoo_pg_pass
-volumes:
-  odoo-web-data:
 networks:
-  cicd:
+  common:
     external: true

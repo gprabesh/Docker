@@ -5,7 +5,7 @@ services:
     container_name: metabase
     hostname: metabase
     volumes:
-    - 'metabase:/dev/random:ro'
+    - './volumes/metabase:/dev/random:ro'
     ports:
       - 3000:3000
     environment:
@@ -16,7 +16,7 @@ services:
       MB_DB_PASS_FILE: /run/secrets/db_password
       MB_DB_HOST: mysql
     networks:
-      - cicd
+      - common
     secrets:
       - db_password
       - db_user
@@ -26,10 +26,8 @@ services:
       timeout: 5s
       retries: 5
 networks:
-  cicd:
+  common:
     external: true
-volumes:
-  metabase: null
 secrets:
    db_password:
      file: db_password.txt

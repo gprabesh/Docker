@@ -4,14 +4,11 @@ services:
     image: 'portainer/portainer-ce:latest'
     restart: on-failure
     volumes:
-      - 'portainer:/data'
+      - './volumes/portainer:/data'
       - '/var/run/docker.sock:/var/run/docker.sock'
     container_name: 'portainer'
     networks:
-      - cicd
-volumes:
-  portainer: null
-
+      - common
 networks:
-  cicd:
+  common:
     external: true
