@@ -6,7 +6,7 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - './volumes/ollama:/app/backend/data'
+      - './volumes/ollama-webui:/app/backend/data'
     container_name: 'ollama-webui'
     environment:
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
