@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  memcached:
+    restart: unless-stopped
+    image: 'memcached:latest'
+    ports:
+      - '172.17.0.1:11211:11211'
+    networks:
+      - common
+    container_name: 'memcached'
+networks:
+  common:
+    external: true
