@@ -1,0 +1,20 @@
+services:
+  crafty:
+    container_name: crafty
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest
+    restart: unless-stopped
+    environment:
+      - TZ=Etc/UTC
+    ports:
+      - "172.17.0.1:25500-25600:25500-25600"
+    volumes:
+      - ./volumes/backups:/crafty/backups
+      - ./volumes/logs:/crafty/logs
+      - ./volumes/servers:/crafty/servers
+      - ./volumes/config:/crafty/app/config
+      - ./volumes/import:/crafty/import
+    networks:
+      - common
+networks:
+  common:
+    external: true
