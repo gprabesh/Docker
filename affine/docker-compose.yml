@@ -1,0 +1,28 @@
+services:
+  affine:
+    image: ghcr.io/toeverything/affine-graphql:stable
+    container_name: affine
+    command: [ 'sh', '-c', 'node ./scripts/self-host-predeploy && node ./dist/index.js' ]
+    ports:
+      - '127.0.0.1:3010:3010'
+      - '127.0.0.1:5555:5555'
+    volumes:
+      - ./volumes/affine/self-host/config:/root/.affine/config
+      - ./volumes/affine/self-host/storage:/root/.affine/storage
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '1000m'
+    restart: unless-stopped
+    environment:
+      - NODE_OPTIONS="--import=./scripts/register.js"
+      - AFFINE_CONFIG_PATH=/root/.affine/config
+      - REDIS_SERVER_HOST=${REDIS_SERVER_HOST}
+      - DATABASE_URL=${DATABASE_URL}
+      - NODE_ENV=production
+      - AFFINE_SERVER_HOST=${AFFINE_SERVER_HOST}
+    networks:
+      - common
+networks:
+  common:
+    external: true

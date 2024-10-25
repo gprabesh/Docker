@@ -1,0 +1,14 @@
+services:
+  redis-server:
+    restart: unless-stopped
+    image: 'redis:latest'
+    ports:
+      - '127.0.0.1:6379:6379'
+    networks:
+      - common
+    volumes:
+      - './volumes/redis:/data'
+    container_name: 'redis'
+networks:
+  common:
+    external: true
