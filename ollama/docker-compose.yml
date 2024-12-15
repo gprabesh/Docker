@@ -1,10 +1,9 @@
-version: '3.8'
 services:
   ollama:
-    image: 'ollama/ollama:0.3.6'
+    image: 'ollama/ollama'
     restart: unless-stopped
     ports:
-      - '11434:11434'
+      - '172.17.0.1:11434:11434'
     volumes:
       - './volumes/ollama:/root/.ollama'
     container_name: 'ollama'
