@@ -4,11 +4,6 @@ services:
     container_name: n8n
     restart: unless-stopped
     environment:
-      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=http
-      - NODE_ENV=production
-      - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
     volumes:
       - ./volumes:/home/node/.n8n
