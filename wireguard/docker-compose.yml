@@ -3,10 +3,9 @@ services:
     image: ghcr.io/wg-easy/wg-easy:latest
     container_name: wireguard
     environment:
-      Optional:
-        - PORT=51821
-        - HOST=0.0.0.0
-        - INSECURE=false
+      - PORT=51821
+      - HOST=0.0.0.0
+      - INSECURE=false
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
