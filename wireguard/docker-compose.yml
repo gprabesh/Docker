@@ -2,9 +2,14 @@ services:
   wireguard:
     image: ghcr.io/wg-easy/wg-easy:15
     container_name: wireguard
+    environment:
+      Optional:
+        - PORT=51821
+        - HOST=0.0.0.0
+        - INSECURE=false
     cap_add:
       - NET_ADMIN
-      - SYS_MODULE 
+      - SYS_MODULE
     volumes:
       - ./volumes/wireguard:/etc/wireguard
     ports:
