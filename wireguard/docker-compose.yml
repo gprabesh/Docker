@@ -1,10 +1,10 @@
 services:
   wireguard:
-    image: lscr.io/linuxserver/wireguard:latest
+    image: ghcr.io/wg-easy/wg-easy:15
     container_name: wireguard
     cap_add:
       - NET_ADMIN
-      - SYS_MODULE #optional
+      - SYS_MODULE 
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -12,9 +12,13 @@ services:
       - SERVERURL=${SERVERURL}
       - PEERS=${PEERS}
     volumes:
-      - ./volumes/config:/config
+      - ./volumes/wireguard:/etc/wireguard
     ports:
       - 51820:51820/udp
     sysctls:
+      - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.default.forwarding=1
     restart: unless-stopped
