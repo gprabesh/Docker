@@ -5,12 +5,6 @@ services:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE 
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
-      - SERVERURL=${SERVERURL}
-      - PEERS=${PEERS}
     volumes:
       - ./volumes/wireguard:/etc/wireguard
     ports:
