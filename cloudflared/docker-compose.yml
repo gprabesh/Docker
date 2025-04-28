@@ -1,0 +1,13 @@
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    command: tunnel run wireguard-tunnel
+    restart: unless-stopped
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    networks:
+      - common
+networks:
+  common:
+    external: true
