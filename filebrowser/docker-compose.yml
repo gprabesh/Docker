@@ -1,0 +1,15 @@
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+    volumes:
+      - ${PHOTO_DIR}:/srv:ro
+      - ./volumes/filebrowser.db:/database/filebrowser.db
+    environment:
+      - FB_NOAUTH=false
+    networks:
+      - common
+networks:
+  common:
+    external: true
