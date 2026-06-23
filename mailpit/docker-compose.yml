@@ -1,0 +1,13 @@
+services:
+  mailpit:
+    restart: unless-stopped
+    image: 'axllent/mailpit'
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    networks:
+      - common
+    container_name: 'mailpit'
+networks:
+  common:
+    external: true
